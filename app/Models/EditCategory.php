@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class EditCategoryModel extends Model
+class EditCategory extends Model
 {
+    protected $table='category';
+
     public static function selectAllCategory()
     {
-        return DB::table('category')->select('*')->get();
+        return self::all();
     }
 }

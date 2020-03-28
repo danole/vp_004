@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class ProductModel extends Model
+class Product extends Model
 {
+    protected $table='orders';
+
     public static function productFromBase($id)
     {
-        return DB::table('orders')->where('id', '=', $id)->get();
+        return self::where('id', '=', $id)->get();
     }
 }

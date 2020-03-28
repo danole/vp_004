@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CreateProductModel;
+use App\Models\CreateProduct;
 use Illuminate\Http\Request;
 
 class CreateProductController extends Controller
@@ -19,7 +19,7 @@ class CreateProductController extends Controller
             $price = $request->input('price');
             $image = $request->input('image');
             $description = $request->input('description');
-            CreateProductModel::insertProduct($title, $category_id, $price, $image, $description);
+            CreateProduct::insertProduct($title, $category_id, $price, $image, $description);
             return redirect()->route('successfulAdmin');
         } else {
             if (!empty($request->input('submit'))) {

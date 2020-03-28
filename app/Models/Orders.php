@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class AllOrdersModel extends Model
+class Orders extends Model
 {
+    protected $table = 'buy';
+
     public static function selectOrders()
     {
-        return DB::table('buy')->select("*")->get();
+        return self::all();
     }
 }

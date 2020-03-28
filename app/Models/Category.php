@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class CategoryModel extends Model
+class Category extends Model
 {
 
     public static function CategoryFromDatabase()

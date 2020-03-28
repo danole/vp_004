@@ -16,13 +16,8 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $user = $request->user();
-        if (isset($user)) {
-            if ($user->admin == 'yes') {
-                return $next($request);
-            } elseif ($user->admin == 'no') {
-                return redirect()->route('index');
-            }
+        if (!empty($request->user()) && $request->user()->admin == true) {
+            return $next($request);
         }
         return redirect()->route('index');
     }

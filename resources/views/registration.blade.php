@@ -46,9 +46,9 @@
                                 </div>
                                 <p>Права админа</p>
                                 <p>Да</p>
-                                <input type="checkbox" name="admin" value="yes">
+                                <input type="checkbox" name="admin" value="true">
                                 <p>Нет</p>
-                                <input type="checkbox" name="admin" value="no">
+                                <input type="checkbox" name="admin" value="false">
 
                                 <div class="form-group row">
                                     <label for="password"

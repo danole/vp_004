@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\CategoryModel;
+use App\Models\Category;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -26,13 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $categoryItem=CategoryModel::CategoryFromDatabase();
+        $categoryItem=Category::CategoryFromDatabase();
         $category=[];
         foreach ($categoryItem as $value){
-            $item=[];
-            $item[]=$value->title;
-            $item[]=$value->id;
-            $category[]= $item;
+            $category[]= [$value->title, $value->id];
         }
         Schema::defaultStringLength(191);
         View::share('category', $category);

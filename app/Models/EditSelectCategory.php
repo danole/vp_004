@@ -3,18 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class EditSelectCategoryModel extends Model
+class EditSelectCategory extends Model
 {
+    protected $table='category';
+
     public static function selectChangeCategory($id)
     {
-        return DB::table('category')->select('*')->where('id', '=', $id)->get();
+        return self::select('*')->where('id', '=', $id)->get();
     }
 
     public static function updateChangeCategory($id, $title, $description)
     {
-        DB::table('category')->where('id', '=', $id)->update([
+        self::where('id', '=', $id)->update([
             'title' => $title,
             'description' => $description
         ]);

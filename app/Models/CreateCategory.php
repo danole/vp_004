@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class CreateCategoryModel extends Model
+class CreateCategory extends Model
 {
+    protected $table='category';
+
     public static function insertCategory($title, $description)
     {
-        DB::table('category')->insert([
+        self::insert([
             'title' => $title,
             'description' => $description
         ]);

@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class CreateProductModel extends Model
+class CreateProduct extends Model
 {
+    protected $table='orders';
+
     public static function insertProduct($title, $category_id, $price, $image, $description)
     {
-        DB::table('orders')->insert([
+        self::insert([
             'title' => $title,
             'category_id' => $category_id,
             'price' => $price,

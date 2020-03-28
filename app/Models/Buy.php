@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class BuyModel extends Model
+class Buy extends Model
 {
     public static function productFromOrders($id)
     {

@@ -3,18 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class EditSelectProductModel extends Model
+class EditSelectProduct extends Model
 {
+    protected $table='orders';
+
     public static function selectChangeProduct($id)
     {
-        return DB::table('orders')->select('*')->where('id', '=', $id)->get();
+        return self::select('*')->where('id', '=', $id)->get();
     }
 
     public static function updateChangeProduct($productId, $title, $category_id, $price, $image, $description)
     {
-        DB::table('orders')->where('id', '=', $productId)->update([
+        self::where('id', '=', $productId)->update([
             'title' => $title,
             'category_id' => $category_id,
             'price' => $price,

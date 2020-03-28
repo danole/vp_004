@@ -3,16 +3,16 @@
     <?php echo e(csrf_field()); ?>
 
     <p>Введите название товара</p>
-    <input type="text" name="title" value="<?php echo e($changeTitle); ?>">
+    <input type="text" name="title" value="<?php echo e($change['0']); ?>">
     <p>Введите категорию товара</p>
-    <input type="number" name="category_id" value="<?php echo e($changeCategory_id); ?>">
+    <input type="number" name="category_id" value="<?php echo e($change['2']); ?>">
     <p>Введите цену товара</p>
-    <input type="number" name="price" value="<?php echo e($changePrice); ?>">
+    <input type="number" name="price" value="<?php echo e($change['1']); ?>">
     <p>Введите путь к картинке</p>
-    <input type="text" name="image" value="<?php echo e($changeImage); ?>">
+    <input type="text" name="image" value="<?php echo e($change['3']); ?>">
     <p>Введите описание товара</p>
-    <textarea name="description" cols="30" rows="10"><?php echo e($changeDescription); ?></textarea><br><br>
-    <input type="hidden" name="id" value="<?php echo e($changeId); ?>">
+    <textarea name="description" cols="30" rows="10"><?php echo e($change['4']); ?></textarea><br><br>
+    <input type="hidden" name="id" value="<?php echo e($change['5']); ?>">
     <input type="submit" name="submit" value="Изменить товар"><br><br>
     <?php if(!empty($error)): ?>
         <?php $__currentLoopData = $error; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

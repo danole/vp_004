@@ -2,46 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EditSelectCategoryModel;
+use App\Models\EditSelectCategory;
 use Illuminate\Http\Request;
-use App\Models\EditSelectProductModel;
+use App\Models\EditSelectProduct;
 
 class EditSelectProductController extends Controller
 {
     public function editSelectProduct(Request $request)
     {
         $id = $request->input('id');
-        $changeProduct = EditSelectProductModel::selectChangeProduct($id);
-        $changeTitle = $changeProduct['0']->title;
-        $changePrice = $changeProduct['0']->price;
-        $changeCategory_id = $changeProduct['0']->category_id;
-        $changeImage = $changeProduct['0']->image;
-        $changeDescription = $changeProduct['0']->description;
-        $changeId = $changeProduct['0']->id;
+        $changeProduct = EditSelectProduct::selectChangeProduct($id);
+        $change = [];
+        $change[] = $changeProduct['0']->title;
+        $change[] = $changeProduct['0']->price;
+        $change[] = $changeProduct['0']->category_id;
+        $change[] = $changeProduct['0']->image;
+        $change[] = $changeProduct['0']->description;
+        $change[] = $changeProduct['0']->id;
         $error = [];
-        if (!empty($request->input('title') && $request->input('category_id'))
-            && $request->input('price') && $request->input('image')
-            && $request->input('description')) {
-            $title = $request->input('title');
-            $category_id = $request->input('category_id');
-            $price = $request->input('price');
-            $image = $request->input('image');
-            $description = $request->input('description');
-            $productId = $request->input('id');
-            EditSelectProductModel::updateChangeProduct($productId, $title, $category_id, $price, $image, $description);
-            return redirect()->route('successfulAdmin');
-        } else {
-            if (!empty($request->input('submit'))) {
-                $error[] = "Заполните все поля";
+        $product = [];
+        $input = $request->except('submit');
+
+        if (!empty($request->input('submit'))) {
+            foreach ($input as $value) {
+                if (!empty($value)) {
+                    $product[] = $value;
+                } else {
+                    $error[] = "Заполните все поля";
+                }
             }
         }
+        if (count($product) == 7) {
+            $title = $product['1'];
+            $category_id = $product['2'];
+            $price = $product['3'];
+            $image = $product['4'];
+            $description = $product['5'];
+            $productId = $product['6'];
+            EditSelectProduct::updateChangeProduct($productId, $title, $category_id, $price, $image, $description);
+            return redirect()->route('successfulAdmin');
+        }
         return view('admin/editSelectProduct', [
-            'changeTitle' => $changeTitle,
-            'changeDescription' => $changeDescription,
-            'changeId' => $changeId,
-            'changePrice' => $changePrice,
-            'changeCategory_id' => $changeCategory_id,
-            'changeImage' => $changeImage,
+            'change' => $change,
             'error' => $error
         ]);
     }

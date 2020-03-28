@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
-use App\Models\CategoryModel;
+use App\Models\Category;
 
 class IndexController extends Controller
 {
